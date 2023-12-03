@@ -1,0 +1,29 @@
+---
+- name: Install dependencies for SteamCMD
+  ansible.builtin.apt:
+    name:
+      - lib32gcc-s1
+    update_cache: true
+
+- name: Create the SteamCMD installation directory
+  ansible.builtin.file:
+    path: "{{ steamcmd.destination }}"
+    state: directory
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: "0700"
+
+- name: Check the installation status of SteamCMD
+  ansible.builtin.stat:
+    path: "{{ steamcmd.destination }}/steamcmd.sh"
+  register: steamcmd_installation_status
+
+- name: Install SteamCMD
+  ansible.builtin.unarchive:
+    src: https://media.steampowered.com/installer/steamcmd_linux.tar.gz
+    dest: "{{ steamcmd.destination }}"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: "0700"
+    remote_src: true
+  when: not steamcmd_installation_status.stat.exists
