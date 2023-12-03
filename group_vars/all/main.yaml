@@ -9,3 +9,6 @@ cs2server:
 
 metamod:
   version: "2.0"
+
+counterstrikesharp:
+  download_url: https://github.com/roflmuffin/CounterStrikeSharp/releases/download/v98/counterstrikesharp-with-runtime-build-98-linux-1f9630b.zip

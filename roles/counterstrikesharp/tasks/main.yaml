@@ -1,0 +1,15 @@
+---
+- name: Install dependencies for CounterStrikeSharp
+  ansible.builtin.apt:
+    name:
+      - unzip # for ansible.builtin.unarchive with zip
+    update_cache: true
+
+- name: Install CounterStrikeSharp
+  ansible.builtin.unarchive:
+    src: "{{ counterstrikesharp.download_url }}"
+    dest: "{{ cs2server.destination }}/game/csgo/"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: "0744"
+    remote_src: true
