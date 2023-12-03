@@ -6,3 +6,6 @@ steamcmd:
 
 cs2server:
   destination: "/home/{{ username }}/cs2server"
+
+metamod:
+  version: "2.0"

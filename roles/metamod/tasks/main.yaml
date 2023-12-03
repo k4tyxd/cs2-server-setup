@@ -1,0 +1,16 @@
+---
+- name: Get the filename of the latest build for Metamod
+  ansible.builtin.uri:
+    url: "https://mms.alliedmods.net/mmsdrop/{{ metamod.version }}/mmsource-latest-linux"
+    method: GET
+    return_content: true
+  register: metamod_get_latest_build
+
+- name: Install Metamod
+  ansible.builtin.unarchive:
+    src: "https://mms.alliedmods.net/mmsdrop/{{ metamod.version }}/{{ metamod_get_latest_build.content }}"
+    dest: "{{ cs2server.destination }}/game/csgo/"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: "0744"
+    remote_src: true
