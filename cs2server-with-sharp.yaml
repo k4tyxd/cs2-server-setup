@@ -6,4 +6,6 @@
   roles:
     - steamcmd
     - cs2server
+    - metamod
+    - counterstrikesharp
     - config # final step

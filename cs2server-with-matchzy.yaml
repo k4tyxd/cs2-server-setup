@@ -6,4 +6,7 @@
   roles:
     - steamcmd
     - cs2server
+    - metamod
+    - counterstrikesharp
+    - matchzy
     - config # final step
