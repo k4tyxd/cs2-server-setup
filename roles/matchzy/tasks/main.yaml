@@ -1,0 +1,15 @@
+---
+- name: Install dependencies for MatchZy
+  ansible.builtin.apt:
+    name:
+      - unzip # for ansible.builtin.unarchive with zip
+    update_cache: true
+
+- name: Install MatchZy
+  ansible.builtin.unarchive:
+    src: "{{ matchzy.download_url }}"
+    dest: "{{ cs2server.destination }}/game/csgo/"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: "0744"
+    remote_src: true

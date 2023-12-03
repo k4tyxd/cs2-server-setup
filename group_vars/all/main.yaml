@@ -12,3 +12,6 @@ metamod:
 
 counterstrikesharp:
   download_url: https://github.com/roflmuffin/CounterStrikeSharp/releases/download/v98/counterstrikesharp-with-runtime-build-98-linux-1f9630b.zip
+
+matchzy:
+  download_url: https://github.com/shobhit-pathak/MatchZy/releases/download/0.4.3-alpha/matchzy-0.4.3.zip
