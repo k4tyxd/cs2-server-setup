@@ -1,0 +1,16 @@
+---
+- name: Create the startup file
+  ansible.builtin.template:
+    src: start.sh.j2
+    dest: "{{ cs2server.destination }}/start.sh"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: "0700"
+
+- name: Create the server.cfg file
+  ansible.builtin.template:
+    src: game/csgo/cfg/server.cfg.j2
+    dest: "{{ cs2server.destination }}/game/csgo/cfg/server.cfg"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: "0700"

@@ -2,3 +2,8 @@
 all:
   hosts:
     sv.example.com:
+      cs2server_hostname: cs2 match server
+      cs2server_password: password # ansible vault
+      cs2server_rcon_password: password # ansible vault
+      cs2server_port: 27015
+      cs2server_gslt: xxxxx # ansible vault

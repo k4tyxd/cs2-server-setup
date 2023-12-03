@@ -1,0 +1,5 @@
+#!/bin/sh
+
+SCRIPT_DIR=$(cd $(dirname $0); pwd)
+
+"$SCRIPT_DIR/game/bin/linuxsteamrt64/cs2" -dedicated -usercon +port {{ cs2server_port }} +game_type 0 +game_mode 1 +map de_dust2 -maxplayers 20 +sv_setsteamaccount {{ cs2server_gslt }}
