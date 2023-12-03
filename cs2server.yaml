@@ -1,0 +1,6 @@
+---
+- name: Set up Counter-Strike 2 Dedicated Server
+  hosts: all
+  become: true
+  remote_user: ubuntu
+  roles:
