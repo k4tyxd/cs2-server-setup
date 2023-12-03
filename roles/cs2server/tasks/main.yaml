@@ -1,0 +1,50 @@
+---
+- name: Create the cs2server installation directory
+  ansible.builtin.file:
+    path: "{{ cs2server.destination }}"
+    state: directory
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: "0700"
+
+- name: Check the installation status of cs2server
+  ansible.builtin.stat:
+    path: "{{ cs2server.destination }}/game/bin/linuxsteamrt64/cs2"
+  register: cs2server_installation_status
+
+- name: Install cs2server
+  ansible.builtin.command:
+    cmd: "{{ steamcmd.destination }}/steamcmd.sh +force_install_dir {{ cs2server.destination }} +login anonymous +app_update 730 validate +quit"
+  become: true
+  become_user: "{{ username }}"
+  timeout: 7200 # seconds
+  register: cs2server_install
+  when: not cs2server_installation_status.stat.exists
+  changed_when: "'Success! App \\'730\\' fully installed.' in cs2server_install.stdout"
+  failed_when: "'Error' in cs2server_install.stdout"
+
+- name: Create the ~/.steam directory
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: "0700"
+  with_items:
+    - "/home/{{ username }}/.steam"
+    - "/home/{{ username }}/.steam/sdk32"
+    - "/home/{{ username }}/.steam/sdk64"
+
+- name: Create a symbolic link for steamclient.so for the Steam client
+  ansible.builtin.file:
+    src: "{{ steamcmd.destination }}/linux{{ item }}/steamclient.so"
+    dest: "/home/{{ username }}/.steam/sdk{{ item }}/steamclient.so"
+    state: link
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: "0700"
+    follow: false
+    force: true
+  with_items:
+    - "32"
+    - "64"

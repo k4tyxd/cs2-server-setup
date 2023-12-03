@@ -5,3 +5,4 @@
   remote_user: ubuntu
   roles:
     - steamcmd
+    - cs2server

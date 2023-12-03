@@ -3,3 +3,6 @@ username: ubuntu
 
 steamcmd:
   destination: "/home/{{ username }}/steamcmd"
+
+cs2server:
+  destination: "/home/{{ username }}/cs2server"
