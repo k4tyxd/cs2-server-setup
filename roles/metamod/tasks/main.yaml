@@ -14,3 +14,9 @@
     group: "{{ username }}"
     mode: "0744"
     remote_src: true
+
+- name: Edit gameinfo.gi file to load Metamod
+  ansible.builtin.replace:
+    path: "{{ cs2server.destination }}/game/csgo/gameinfo.gi"
+    regexp: ^(?!\t\t\tGame\tcsgo/addons/metamod\r\n)\r\n\t\t\tGame\tcsgo\r$
+    replace: \r\n\t\t\tGame\tcsgo/addons/metamod\r\n\t\t\tGame\tcsgo\r
